@@ -27,6 +27,7 @@ import (
 	"os/exec"
 	"regexp"
 	"strings"
+	"github.com/dustinkirkland/golang-petname"
 )
 
 // setCmd represents the set command
@@ -58,6 +59,10 @@ func setHostname(args ...string) {
 	// if we have a hostname as command line arg use that
 	if len(args) > 0 {
 		hostname = args[0]
+	}
+
+	if hostname == "black-pearl" {
+		hostname = petname.Generate(2, "-")
 	}
 
 	if hostname == "" && cfgFile == "" {
